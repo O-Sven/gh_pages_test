@@ -1,0 +1,690 @@
+---
+redirect_from:
+  - "/04-numpy/04-numpy-basics-solution"
+interact_link: content/04_numpy/04_numpy_basics_solution.ipynb
+kernel_name: python3
+kernel_path: content/04_numpy
+has_widgets: false
+title: |-
+  Solutions
+pagenum: 6
+prev_page:
+  url: /04_numpy/04_numpy_basics.html
+next_page:
+  url: /05_optimisation/05_data_optimization.html
+suffix: .ipynb
+search: numpy data array br y python routine value div style arrays element font width indexing function px values loadtxt task set using average root img src images png lists not store list combination plot color green numpys stored column check following derivation np moving between elements x float analysis fast operations shape manipulation basic should only same type d works also possible load file matplotlib csv access above loop through bigger smaller modified plt given point convolve n described finding derivative turning points therefore sign change rootfinding create mask s overflow hidden left hdata h bwinter semester bbr blukas arnold
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Solutions</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="width: 100%; overflow: hidden;">
+    <div style="width: 500px; float: left;"> 
+        <h1>Data Analysis with Python</h1> <br>
+        <b>Winter Semester 2018/2019</b><br>
+        <b>Lukas Arnold and Max Böhler</b>
+    </div>
+    <div style="float:right;"> 
+        <img src="images/fzj_logo.png" style="width:150px;"/>
+        <img src="images/buw_logo.png" style="width:150px;"/>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>NumPy</em> is the fundamental package for scientific computing with Python when it comes to large, multidimensional arrays (vectors) and matrices.<br>
+<br>
+In addition to the fast computation of <em>NumPy</em> arrays (way more faster than Python Lists), the main benefit lies in the included mathematical operations like shape manipulation, sorting, selecting, I/O, basic linear algebra, basic statistical operations, random simulation and so on.
+One should hold in mind that <em>NumPy</em> arrays are not as flexible as Python Lists. While the latter one could store different data types in one list, each <em>NumPy</em> array only stores values of the same data type!</p>
+<p>Examples and more detailed instructions how to use <em>numpy</em> can be found here:
+<a href="http://www.numpy.org/">http://www.numpy.org/</a>
+<br>
+<br>
+<em>Note: If numpy is not yet installed on your system, open the Anaconda prompt (or terminal on Unix systems) and type:</em></p>
+<p><code>conda install numpy</code></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This small Script shows how fast a NumPy Array in comparison to a Python List is.</span>
+<span class="c1"># Execute this script by pushing Shift+Enter</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">size_of_vec</span> <span class="o">=</span> <span class="mi">1000000</span>
+
+<span class="k">def</span> <span class="nf">pure_python_version</span><span class="p">():</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t1</span><span class="p">,</span> <span class="n">Z</span>
+
+<span class="k">def</span> <span class="nf">numpy_version</span><span class="p">():</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size_of_vec</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">X</span> <span class="o">+</span> <span class="n">Y</span>
+    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t1</span><span class="p">,</span> <span class="n">Z</span>
+
+
+<span class="n">t1</span><span class="p">,</span><span class="n">py_list</span> <span class="o">=</span> <span class="n">pure_python_version</span><span class="p">()</span>
+<span class="n">t2</span><span class="p">,</span><span class="n">np_array</span> <span class="o">=</span> <span class="n">numpy_version</span><span class="p">()</span>
+
+<span class="n">list_mem</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">py_list</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">array_mem</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">np_array</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computational time for Python List: </span><span class="si">{}</span><span class="s2"> s and the object (memory) size: </span><span class="si">{}</span><span class="s2"> kB&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">list_mem</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computational time for Numpy Array: </span><span class="si">{}</span><span class="s2"> s and the object (memory) size: </span><span class="si">{}</span><span class="s2"> kB&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span><span class="n">array_mem</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Therefore the numpy array is </span><span class="si">{:.4f}</span><span class="s2"> times faster!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span><span class="o">/</span><span class="n">t2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Array/Matrix-indexing">Array/Matrix indexing<a class="anchor-link" href="#Array/Matrix-indexing"> </a></h3><p>Single element indexing for a 1-D works exactly like indexing for Python-Lists. It is 0-based, and accepts negative indices for indexing from the end of the array.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Example</span>
+
+<span class="c1"># Different routines for the creation of NumPy 1-D arrays:</span>
+<span class="n">array_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span> <span class="c1"># Simple 1D array </span>
+<span class="n">array_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Create an array with 10 elements with value 0</span>
+<span class="n">array_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">20.0</span><span class="p">)</span> <span class="c1"># Create an array from 0 to 19</span>
+<span class="n">array_4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> <span class="c1"># Creates a evenly spaced array from 0 to 20 with 11 elements</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">array_1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Print the last element of array_1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">array_3</span><span class="p">)</span> <span class="c1"># Print all elements of array_3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">array_4</span><span class="p">[</span><span class="n">array_4</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">])</span> <span class="c1"># Print all elements of array_4 which are bigger than 10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2-D array indexing works in a similar way.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Example</span>
+
+<span class="n">array_2D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span> <span class="c1"># create a 2D array (= 2x3 matrix)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">array_2D</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># print element in row 1 column 2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is also possible to slice (accessing more than one element) numpy arrays.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Example</span>
+
+<span class="c1"># Create a more complex Matrix</span>
+
+<span class="c1"># First initalize Matrix</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># create a 10x10 zero-matrix</span>
+
+<span class="c1"># Get the shape (number of rows/columns)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Loop through each row/column</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rows</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">columns</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">counter</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1">#Array Slicing</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span> <span class="c1"># Print the first row of matrix x (using : as symbol for all elements in this row)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">:])</span> <span class="c1"># Print the first row starting from column 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># Print all elements of column 3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="numpy.loadtxt">numpy.loadtxt<a class="anchor-link" href="#numpy.loadtxt"> </a></h3><p>The NumPy routine <em>loadtxt</em> is a convenient way to load data from a ASCII formatted file into a numpy array.
+In combination with <em>matplotlib</em> and array slicing it is also a fast way to plot data.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example</span>
+<span class="c1"># For this example, it is necassary to download the &#39;simple_data.csv&#39; file from moodle!</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;simple_data.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="c1">#print(data)</span>
+
+<span class="n">x_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># Column 0 contains all x-values</span>
+<span class="n">y_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Column 1 contains all y-values</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-1:-Load-and-manipulate-data-from-a-.csv-file_-"><font color="green"> _Task 1: Load and manipulate data from a .csv file_ </font><a class="anchor-link" href="#-_Task-1:-Load-and-manipulate-data-from-a-.csv-file_-"> </a></h3><ol>
+<li>Use NumPy's .loadtxt() routine to access the data stored in bitmap_data.csv and store it in a numpy array</li>
+<li>Get the shape of this array as seen above</li>
+<li>Loop through each row and column and check if each element is bigger or smaller than 150<ul>
+<li>if the element is bigger or equal 150 set the element value to 1</li>
+<li>if the element is smaller than 150 set the value to 0
+<br>
+<br></li>
+</ul>
+</li>
+<li>Visualize the modified data using the following Code snippet: (Don't forget to import matplotlib!)<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="o">&lt;</span><span class="n">Name</span> <span class="n">of</span> <span class="n">modified</span> <span class="n">NumPy</span> <span class="n">array</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;binary_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+What do you see?</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="c1"># load the bitmap data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;bitmap_data.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="c1"># show raw data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;binary_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># classic way </span>
+<span class="n">rows</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rows</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">columns</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">150</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;binary_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>       
+
+<span class="c1"># numpy way</span>
+<span class="c1"># relaod data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;bitmap_data.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="n">data</span> <span class="o">&gt;=</span> <span class="mi">150</span>
+
+<span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;binary_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-manipulation-using-NumPy-routines">Data manipulation using NumPy routines<a class="anchor-link" href="#Data-manipulation-using-NumPy-routines"> </a></h3><h4 id="Generate-the-derivation-of-a-given-set-of-data">Generate the derivation of a given set of data<a class="anchor-link" href="#Generate-the-derivation-of-a-given-set-of-data"> </a></h4><p>The NumPy routine</p>
+
+<pre><code>np.gradient(y)</code></pre>
+<p>generates the derivation of a given function (data).</p>
+<h4 id="Smoothing-via-Moving-Average">Smoothing via Moving-Average<a class="anchor-link" href="#Smoothing-via-Moving-Average"> </a></h4><p>Moving average is a simple operation used usually to suppress noise of a signal: we set the value of each point to the average of the values in its neighborhood. With NumPy this is done using the</p>
+<div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span><span class="o">/</span><span class="n">N</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">)</span>
+</pre></div>
+<p>routine.<br>
+The derivation and mathematics of this routine is described under the following link:<br>
+<a href="http://matlabtricks.com/post-11/moving-average-by-convolution">http://matlabtricks.com/post-11/moving-average-by-convolution</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Example Derivation</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># Generate an array with 100 elements from 0 to 20</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># Calculate f(x) = sin(x)</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># Calculate f2(x) = cos(x)</span>
+
+<span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="c1"># Generate the derivation </span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c1"># f(x) </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span> <span class="c1"># f2(x)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="c1"># df(x) which should be the same as f2(x)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Example Smoothing</span>
+
+<span class="c1"># Add noise to sin(x) using random numbers between -0.3 and 0.3</span>
+<span class="n">y_noise</span> <span class="o">=</span> <span class="n">y</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">y_noise</span><span class="p">)):</span>
+    <span class="n">y_noise</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_noise</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+    
+    
+<span class="n">sm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y_noise</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,))</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span> <span class="c1"># Moving Average</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y_noise</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">sm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Root-finding">Root finding<a class="anchor-link" href="#Root-finding"> </a></h4><p>Root finding in combination with a derivative is one way to find the turning points of a function.
+A root exists if the function value assumes the value 0 at any point. Since NumPy arrays do not have continuous values (there is always a step between two elements) it is possible that there is no exact 0 value. Therefore one has to check if there is a sign change between two elements. If a sign change occured the root is between those two elements.</p>
+<h3 id="-_Task-2:-RootFinding-Alogorithm_-"><font color="green"> _Task 2: RootFinding Alogorithm_ </font><a class="anchor-link" href="#-_Task-2:-RootFinding-Alogorithm_-"> </a></h3><ol>
+<li>Develop a function that implements the task described above.
+Proceed as follows:<ul>
+<li>The function should take two parameters x,y which are both two numpy arrays</li>
+<li>Create an empty list in which the results will be stored</li>
+<li>Loop through the y array and check if y[i] &gt; 0 and y[i+1] &lt; 0  or  y[i] &lt; 0 and y[i+1] &gt; 0</li>
+<li>If the condition is true use x[i] and x[i+1] two interpolate the value inbetween</li>
+<li>Return the result list</li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span> <span class="nf">root_finding</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">root_list</span> <span class="o">=</span> <span class="p">[]</span> 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">root_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="p">((</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)):</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+            <span class="n">root_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">root_list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check if your function works:</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+
+<span class="n">roots</span> <span class="o">=</span> <span class="n">root_finding</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">roots_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">roots</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">roots</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">roots_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-3:-Data-Analysis-using-NumPy_-"><font color="green"> _Task 3: Data Analysis using NumPy_ </font><a class="anchor-link" href="#-_Task-3:-Data-Analysis-using-NumPy_-"> </a></h3><ol>
+<li>Use NumPy's .loadtxt() routine to access the data stored in abstand.dat and store it in a numpy array</li>
+<li>Plot column 0 against column 1 of the raw data</li>
+<li>Define a mask to focus the data only on the first oszilations (e.g. t in [10 s, 25 s]) and mask out values larger than 50</li>
+<li>Use NumPy's <em>.convolve</em> routine to smooth the data</li>
+<li>Find the turning points (minima/maxima) of the masked data. Therefore compute the derivative in combination with the root_finding algorithm.</li>
+<li>Finally try to create the following plot:
+<br>
+<br>
+<img src="images/final_plot.png" style="width:450px;"/></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;distance_oszilator.dat&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+<span class="c1"># create mask and set filter conditions</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">raw_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">raw_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">))]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># for convenience, define a new variable with the masked data</span>
+<span class="n">data</span><span class="o">=</span><span class="n">raw_data</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+
+<span class="c1"># N defines the widht of the smooting window</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,))</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">)</span>
+<span class="c1"># the x values of the smoothed values are reduced by N points</span>
+<span class="n">N2</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span>
+<span class="n">sm_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">N2</span><span class="p">:</span><span class="o">-</span><span class="n">N2</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sm_x</span><span class="p">,</span><span class="n">sm</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># compute the derivative</span>
+<span class="n">derivative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">sm_x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sm_x</span><span class="p">,</span> <span class="n">derivative</span><span class="p">)</span>
+<span class="c1"># show the y=0 vicinity</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find and print roots</span>
+<span class="n">raw_roots</span> <span class="o">=</span> <span class="n">root_finding</span><span class="p">(</span><span class="n">sm_x</span><span class="p">,</span> <span class="n">derivative</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_roots</span><span class="p">),</span> <span class="n">raw_roots</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create a list of roots, which are separated by at least dx</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_roots</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">raw_roots</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">raw_roots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dx</span><span class="p">:</span>
+        <span class="n">roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">raw_roots</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">raw_roots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">roots</span><span class="p">),</span> <span class="n">roots</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># plot the distance of the roots</span>
+<span class="n">distance_roots</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">roots</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">distance_roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roots</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">roots</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_roots</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># interpolate the y-values of the extrema, i.e. roots of the derivative</span>
+<span class="n">roots_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">sm_x</span><span class="p">,</span> <span class="n">sm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sm_x</span><span class="p">,</span> <span class="n">sm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">roots_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;experimental raw data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sm_x</span><span class="p">,</span> <span class="n">sm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;smoothed data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">roots_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;extrema&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time /s&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;height /cm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;final_plot.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

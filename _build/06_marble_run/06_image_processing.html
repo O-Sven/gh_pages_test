@@ -1,0 +1,478 @@
+---
+redirect_from:
+  - "/06-marble-run/06-image-processing"
+interact_link: content/06_marble_run/06_image_processing.ipynb
+kernel_name: python3
+kernel_path: content/06_marble_run
+has_widgets: false
+title: |-
+  Image Processing
+pagenum: 10
+prev_page:
+  url: /06_marble_run/06_image_processing.html
+next_page:
+  url: /06_marble_run/06_marble_run_finished_results.html
+suffix: .ipynb
+search: image ffmpeg br python png video div style width images sequence color create colors px using command therefore here following rgb our channel img src line tool green open try us blue shape channels float windows linux macos download html font example examplemedia mp flameimg last should let picture different show three red mixing slider next tuple rows columns car overflow hidden left hdata analysis h bwinter semester bbr blukas arnold max bhler b right fzjlogo buwlogo free cross platform solution record convert stream audio note not package must installed independently system work choice cmd powershell terminal install instructions found
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Image Processing</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="width: 100%; overflow: hidden;">
+    <div style="width: 500px; float: left;"> 
+        <h1>Data Analysis with Python</h1> <br>
+        <b>Winter Semester 2018/2019</b><br>
+        <b>Lukas Arnold and Max Böhler</b>
+    </div>
+    <div style="float:right;"> 
+        <img src="images/fzj_logo.png" style="width:150px;"/>
+        <img src="images/buw_logo.png" style="width:150px;"/>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Video-to-image-sequence-using-FFmpeg">Video to image sequence using FFmpeg<a class="anchor-link" href="#Video-to-image-sequence-using-FFmpeg"> </a></h3><p><em>FFmpeg</em> is a <strong>free</strong> cross-platform (Windows/Linux/macOS) solution to record, convert and stream audio and video.<br>
+<br>
+Note: <em>FFmpeg</em> is a command-line tool not a Python-Package. Therefore it must be installed independently on your system. To work with <em>FFmpeg</em> one has to use a command-line tool of his choice! (Windows: CMD/<del>PowerShell</del>, Linux/macOS: Terminal)</p>
+<p><br>
+<br>
+Download and install instructions can be found here:</p>
+<p><a href="https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg.html">https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg.html</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Example-1:-Video-to-image-sequence-and-vice-versa_-"><font color="green"> _Example 1: Video to image sequence and vice versa_ </font><a class="anchor-link" href="#-_Example-1:-Video-to-image-sequence-and-vice-versa_-"> </a></h3><ol>
+<li>Download the folder example_media from moodle and open the video.</li>
+<li>Open a command-line tool and try to create a image sequence of the given video using the following command:</li>
+</ol>
+
+<pre><code> ffmpeg -i flame_to_img.mp4 -vf fps=1 frame_%03d.png</code></pre>
+<ul>
+<li>This creates images which are numbered in the following order: flame_img_001.png, flame_img_002.png, usw.<br>
+(Here after 999 images, the last image will always be overwritten. One can solve this problem by changing %03d.png to a higher number -&gt; string formatting as in Python)</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Working-with-images-in-Python">Working with images in Python<a class="anchor-link" href="#Working-with-images-in-Python"> </a></h3><p>Before we continue, we should make a short excursion to the field of optics. Therefore, let us look at the following picture:
+<br>
+<img src="example_media/buw_building.jpg" style="width:450px;"/>
+<br>
+What we see are different colors which together show us different shapes and objects. But what we realy see, is a combination of only three colors.<br>
+<strong>Red, Green and Blue</strong>.<br>
+This method is called <em>Additive Color mixing</em>. By mixing those three light colors one can create up to 16.7 Million colors!
+<br>
+<br>
+The following link leads to a simple RGB color slider:
+<a href="rgb-selector-master/index.html">RGB-Slider</a></p>
+<ol>
+<li>Try to create the 'color' white!</li>
+<li>What is the RGB Value?</li>
+</ol>
+<p>Now let us open the example image with Python!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;example_media/buw_building.jpg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>&lt;Figure size 640x480 with 1 Axes&gt;</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, we should look at its shape!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">img_shape</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">img_shape</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(512, 768, 3)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What do we see here?<br>
+The <em>.shape</em> function return a tuple of number of rows, columns and channels. Here our rows are the is the height of our image in pixel. Accordingly the columns are the width of the picture in pixels! The last element in the tuple are the channels. The word channels refere to the colors Red (Channel 0), Green (Channel 1) and Blue (Channel 2)!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># here the paramter cmap is not needed. It just colors the image. Delete this paramter to see the difference!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Channel 0 -&gt; Red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greens&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Channel 1 -&gt; Green&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Channel 2 -&gt; Blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">image_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">image_temp</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_temp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mixing Channel Green and Blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/06_marble_run/06_image_processing_8_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/06_marble_run/06_image_processing_8_1.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/06_marble_run/06_image_processing_8_2.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/06_marble_run/06_image_processing_8_3.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now lets crop our image!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_cut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">420</span><span class="p">:,</span> <span class="mi">570</span><span class="p">:</span><span class="mi">700</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_cut</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.image.AxesImage at 0x7f8a9a941438&gt;</pre>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/06_marble_run/06_image_processing_10_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we try to isolate our blue car. Therefore we plot each channel and determine which color gives the best shape of the car!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_cut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">420</span><span class="p">:,</span> <span class="mi">570</span><span class="p">:</span><span class="mi">700</span><span class="p">,</span> <span class="p">:])</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image_cut</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># red channel</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image_cut</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># green channel</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image_cut</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># blue channel</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Here red seems to be the best one!</span>
+
+<span class="n">image_cut</span><span class="p">[</span><span class="n">r</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span> <span class="c1"># Set all channel values of image_cut to 255, when the red value is larger than 20</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_cut</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/06_marble_run/06_image_processing_12_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/06_marble_run/06_image_processing_12_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Creating-image-sequence-with-Python-and-export-it-into-a-video-format-using-FFmpeg">Creating image sequence with Python and export it into a video format using FFmpeg<a class="anchor-link" href="#Creating-image-sequence-with-Python-and-export-it-into-a-video-format-using-FFmpeg"> </a></h3><p>Now we want to show the course of a cruve over time with a series of pictures.
+Therefore we first create an image sequence with Python</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># x-Array</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># y-Array dumped_oszillator</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span> <span class="c1"># create a counter from 0 to the length of the x-array</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">)</span> <span class="c1"># plot the complete graph with reduced opacity</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">)</span> <span class="c1"># plot part of the graph from 0 to i</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;example_media/plot_img_</span><span class="si">{:03d}</span><span class="s2">.png&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span> <span class="c1"># Save the plot using the counter as the filename!</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can create a video using FFmpeg!</p>
+
+<pre><code> ffmpeg -i plot_img_%03d.png video_name.mp4</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

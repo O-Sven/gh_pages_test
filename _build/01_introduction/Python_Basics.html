@@ -1,0 +1,469 @@
+---
+redirect_from:
+  - "/01-introduction/python-basics"
+interact_link: content/01_introduction/Python_Basics.ipynb
+kernel_name: python3
+kernel_path: content/01_introduction
+has_widgets: false
+title: |-
+  Python Basics
+pagenum: 0
+prev_page:
+  url: 
+next_page:
+  url: /02_flow_control/02_flow_control.html
+suffix: .ipynb
+search: python font type create list string value width new cell e format task here print color green d variables b not latex output variable operations function div style analysis data course org markdown equation point float results jupyter c following none numbers strings logical equal functions values px just any try execution while types enter its change name add expressions floating true expressed false decimal arguments element l img src images png current division advanced www en html work documentation help us code execute cells below mode created mathematical expression end favourite take tiobe index integers enclosed result general power
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Python Basics</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="width: 100%; overflow: hidden;">
+    <div style="width: 500px; float: left;"> 
+        <h1>Data Analysis with Python</h1> <br>
+        <b>Winter Semester 2018/2019</b><br>
+        <b>Lukas Arnold and Max Böhler</b>
+    </div>
+    <div style="float:right;"> 
+        <img src="images/fzj_logo.png" style="width:150px;"/>
+        <img src="images/buw_logo.png" style="width:150px;"/>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="About-Lukas-Arnold">About Lukas Arnold<a class="anchor-link" href="#About-Lukas-Arnold"> </a></h3><ul>
+<li>physicist, diploma and PhD on computational physics at Ruhr-University Bochum</li>
+<li>current position: Head of 'Fire Dynamics' division at the Institute of Advanced Simulation at the Forschungszentrum Jülich</li>
+<li>webpage [old one]: <a href="https://www.fz-juelich.de/SharedDocs/Personen/IAS/JSC/EN/staff/arnold_l.html?nn=361682">https://www.fz-juelich.de/SharedDocs/Personen/IAS/JSC/EN/staff/arnold_l.html?nn=361682</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Idea-of-the-'Data-Analysis-with-Python'-course">Idea of the 'Data Analysis with Python' course<a class="anchor-link" href="#Idea-of-the-'Data-Analysis-with-Python'-course"> </a></h2><h3 id="Motivation">Motivation<a class="anchor-link" href="#Motivation"> </a></h3><ul>
+<li>often the capturing of data is presented and the results are discussed</li>
+<li>the results do not just come out of the aparatus or the simulation, but involve (massive) post-processing of the raw data</li>
+<li>this course shall close the gap</li>
+</ul>
+<h3 id="Goals">Goals<a class="anchor-link" href="#Goals"> </a></h3><ul>
+<li>focus lies on getting YOU started to be able to do analysis by YOURSELF (of eventually YOUR data)</li>
+<li>no deep introduction into analysis methods, but focus on how to work with them in Python</li>
+<li>Max and I will only guide you, but you have to work by yourselfs [this doesn't mean you have to work alone, so team up!]</li>
+</ul>
+<h3 id="Disclaimer">Disclaimer<a class="anchor-link" href="#Disclaimer"> </a></h3><ul>
+<li>we will not provide any/an extensive documentation, all you need is already in the internet and we help you to find it – and yes, you have to read documentations during the excercises</li>
+<li>this course is a new concept, open for everybody and taught the first time by us: please help us to make it better, by constructive feedback and be patient with us debugging the exercises ;-)</li>
+<li>this course is meant for beginners, if you are an expert: stay and give it a try to do advanced analysis!</li>
+<li>this course will grant you no credit points, if you see benefit for students to participate, we will try to include it in future accreditations</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Jupyter">Jupyter<a class="anchor-link" href="#Jupyter"> </a></h1><p>Jupyter is a web-based environment for interactive execution of python code.</p>
+<p>Webpage: <a href="http://jupyter.org">http://jupyter.org</a></p>
+<p>While Jupyter runs a server on your computer (or eventually is run somewhere else) you create Jupyter notebooks which include your Python code and inline visualisation and your documentation.</p>
+<p>Basics infos about notebooks:</p>
+<ul>
+<li>execution is done on a cell basis</li>
+<li>arbitrary order of execution</li>
+<li>two cell types: code and text</li>
+<li>execute current cell: control-enter</li>
+<li>execute current cell and move down to next one: shift-enter</li>
+<li>see help for other keyboard shortcuts</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-1:-Markdown_-"><font color="green"> _Task 1: Markdown_ </font><a class="anchor-link" href="#-_Task-1:-Markdown_-"> </a></h3><ol>
+<li>Look up the shortcuts to create new cells and create a new cell below this one.</li>
+<li>Each cell can be in an edit mode (enter it with enter and leave it without execution with escape). While not in the edit mode, its type can be adjusted. Change the mode of the newly created cell to be a Markdown cell.</li>
+<li>What's Markdown? Look it up, google is your <em>friend</em>.</li>
+<li>Use Markdown to create a formatted cell including:<ul>
+<li>a title with your name</li>
+<li>two sentences about your studies and / or research</li>
+<li>mark the keywords in your text with a bold font type</li>
+<li>add an item list of analysis methods you are interested in </li>
+<li>add a enumerated list of expertises you expect to learn in this course</li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="LaTex">LaTex<a class="anchor-link" href="#LaTex"> </a></h1><p>LaTex is a type setting system to create scientificly butityful documents. However, you can reduce its capabilities to render equations in Markdown cells.</p>
+<p>You basically need a so called <em>equation</em> environment enclosing your definition of the mathematical expression. An input like</p>
+<div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+a<span class="nb">^</span>2 + b<span class="nb">^</span>2 = c<span class="nb">^</span>2
+<span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+</pre></div>
+<p>will produce the following output:</p>
+\begin{equation}
+a^2 + b^2 = c^2
+\end{equation}<p>A nice overview of what can be done in LaTex mathematical expressions can be found here: <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">https://en.wikibooks.org/wiki/LaTeX/Mathematics</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-2:-LaTex_-"><font color="green"> _Task 2: LaTex_ </font><a class="anchor-link" href="#-_Task-2:-LaTex_-"> </a></h3><ol>
+<li>Create a new Markdown cell below this one.</li>
+<li>Think of your favourite equation and express it in LaTex. In case you have none, pitty you, just take mine:</li>
+</ol>
+<p><img src="images/navier-stokes.png" style="width:550px;"/></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Python">Python<a class="anchor-link" href="#Python"> </a></h1><p>Python is a programming language, which is</p>
+<ul>
+<li>easy to read</li>
+<li>simple</li>
+<li>portable</li>
+<li>and wildly used worldwide.</li>
+</ul>
+<p>Short remark: There are two major versions of Python, 2 and 3. If you are a beginner, forget about 2. Otherwise move to 3, if not already happened.</p>
+<p>Some links to browse to:</p>
+<ul>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Python_(programming_language">https://en.wikipedia.org/wiki/Python_(programming_language</a>)</li>
+<li>Homepage: <a href="https://www.python.org">https://www.python.org</a></li>
+<li>TIOBE programming language index: <a href="https://www.tiobe.com/tiobe-index/">https://www.tiobe.com/tiobe-index/</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Scalar-Data-Types">Scalar Data Types<a class="anchor-link" href="#Scalar-Data-Types"> </a></h2><p>The fundamental scalar data types in Python are</p>
+<ul>
+<li>bools</li>
+<li>integers</li>
+<li>floating point numbers</li>
+<li>character strings</li>
+<li>none</li>
+</ul>
+<h3 id="Bools">Bools<a class="anchor-link" href="#Bools"> </a></h3><p>Take eiter a true value, in Python expressed as <code>True</code>, or a false one, here <code>False</code>.</p>
+<h3 id="Integers-and-Floats">Integers and Floats<a class="anchor-link" href="#Integers-and-Floats"> </a></h3><p>Well, integers and floating point nubmers. The decimal separator is a dot, <code>.</code>, and floats can also be expressed in exponential form, like <code>1.5e-3</code>.</p>
+<h3 id="Character-Strings">Character Strings<a class="anchor-link" href="#Character-Strings"> </a></h3><p>This type represents a sring of characters, where the string is enclosed by <code>"</code> or by <code>'</code>. The number of characters in a string can be variable.</p>
+<h3 id="None-Type">None Type<a class="anchor-link" href="#None-Type"> </a></h3><p>If needed, a value can be expressed as none, in Python <code>None</code>, to indicate that the value is empty or non-existent.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Basic-Operations">Basic Operations<a class="anchor-link" href="#Basic-Operations"> </a></h2><h3 id="Arithmetic-Operations">Arithmetic Operations<a class="anchor-link" href="#Arithmetic-Operations"> </a></h3><p>The results of the operations result in the same type as the operands or in a more general one.</p>
+<ul>
+<li><code>+</code>: Addition</li>
+<li><code>-</code>: Subtraction</li>
+<li><code>*</code>: Multiplication</li>
+<li><code>/</code>: Division</li>
+<li><code>//</code>: Floor Division</li>
+<li><code>%</code>: Modulo</li>
+<li><code>**</code>: Power</li>
+</ul>
+<h3 id="Logical-Operations">Logical Operations<a class="anchor-link" href="#Logical-Operations"> </a></h3><p>The results are either <code>False</code> or <code>True</code>.</p>
+<ul>
+<li><code>==</code>: Equal To</li>
+<li><code>&gt;</code>: Greater Than</li>
+<li><code>&gt;=</code>: Greater Than or Equal To</li>
+<li><code>&lt;</code>: Less Than</li>
+<li><code>&lt;=</code>: Less Than or Equal To</li>
+<li><code>!=</code>: Not Equal</li>
+<li><code>and</code>: Logical and</li>
+<li><code>or</code>: Logical or</li>
+<li><code>not</code>: Logical negation</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-3:-Basic-Operations_-"><font color="green"> _Task 3: Basic Operations_ </font><a class="anchor-link" href="#-_Task-3:-Basic-Operations_-"> </a></h3><p>To solve the following tasks, just create new cells and execute them. The results will be displayed directly. Try to create mathematical expressions of the questions below.</p>
+<ol>
+<li>4 + 2 * 4 = ?</li>
+<li>2 to the power of 10?</li>
+<li>What is the remainder of 315 divided by 4?</li>
+<li>Is the ratio of 44 to 4.5 larger than 10?</li>
+<li>Is it true that 4.5 is greater than 4 and smaller than 5?</li>
+<li>What happens if you add <code>"Python"</code> to <code>"for beginners"</code>?</li>
+<li>Create a string that contains 10 times the string <code>"Tick"</code>.</li>
+<li>Which string is smaller: <code>"aachen"</code> or <code>"Bern"</code>? How are strings compared?</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Functions">Functions<a class="anchor-link" href="#Functions"> </a></h3><p>Functions encapsulate complex operations and can be in general executed with respect to various arguments. A function has a name and a list of arguments. To call a function, use its name and the arguments enclosed in <code>()</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-4:-Function-Calls_-"><font color="green"> _Task 4: Function Calls_ </font><a class="anchor-link" href="#-_Task-4:-Function-Calls_-"> </a></h3><p>What do the following functions do? Just try it.</p>
+<ol>
+<li><code>abs(5)</code> and <code>abs(-1.2)</code></li>
+<li><code>float(5)</code></li>
+<li><code>int(4.5)</code></li>
+<li><code>min(6,9)</code></li>
+<li><code>type(5)</code>, <code>type(5.7)</code> and <code>type(4&gt;2)</code></li>
+<li><code>print("Simple output")</code></li>
+<li><code>str(5+7)</code></li>
+</ol>
+<p>A list of all build-in funcitons in Python is available here: <a href="https://docs.python.org/3/library/functions.html">https://docs.python.org/3/library/functions.html</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-5:-String-Creation-I_-"><font color="green"> _Task 5: String Creation I_ </font><a class="anchor-link" href="#-_Task-5:-String-Creation-I_-"> </a></h3><p>A very common task is to create strings containing dynamical values, like for output to files or labeling of figures. One way to acomplish this is to use the <code>format</code> function of the string type.</p>
+<p>The full documentation of the format capabilities is available here: <a href="https://docs.python.org/3.7/library/string.html#format-string-syntax">https://docs.python.org/3.7/library/string.html#format-string-syntax</a></p>
+<p>Format in a nutshell: You create a string, which contains placeholders <code>{}</code> that will be replaced by string representations of passed arguments. For example</p>
+<div class="highlight"><pre><span></span><span class="s2">&quot;My favourite number is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+<p>will result in the following string <code>"My favourite number is: 12"</code>. Advanced formattiong of the replacement can be specified inside the <code>{}</code>.</p>
+<p>Check out the following examples:</p>
+<ol>
+<li><code>"fixed width number {:6d}.".format(144)</code>, here the <code>d</code> states, that the output will be a decimal based integer, with an output width of <code>6</code>. Change the width to 10. What is the output in base 8?</li>
+<li><code>"two floating point numbers, like {:12.4f} or {:e}, are nice".format(1015.34, 1015.34)</code>, here the <code>e</code> and <code>f</code> define the way the floating point number are expressed. The first number indictates again the width, while the second one defines the precission. Change the expression to output only two digits after the decimal point. Can you make the created exponent marker <code>e</code> become capital, i.e. <code>E</code>?</li>
+<li><code>"{:&lt;8d} {:08d} {:+8d}".format(12, 12, 12)</code>, can you guess, what the operations <code>&lt;</code> and <code>+</code> do? What is the effect of a precessing <code>0</code> in the width definition? </li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-6:-String-Creation-II_-"><font color="green"> _Task 6: String Creation II_ </font><a class="anchor-link" href="#-_Task-6:-String-Creation-II_-"> </a></h3><p>Create strings containing the specified expressions.</p>
+<ol>
+<li>The type of [a nmber] is [type of this number], while the type of the logical expression [type of this number is less than 10].</li>
+<li>Given the base [integer] and the exponent [float], the result is [the integer to the power of the float, shown with two digits after the decimal point].</li>
+<li>Given two number [a] and [b] the absolute minimum of those is [min of abs of both].</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Variables">Variables<a class="anchor-link" href="#Variables"> </a></h2><p>Pure numbers, i.e. constant values, are of limited use. In general variables are defined, which can take any value and the expressions are formulated as functions of any variables.</p>
+<p>A variable is created by assigning a value to it, i.e. using the assing operator <code>=</code>:</p>
+<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">5.7</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;no number here&quot;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">8</span>
+</pre></div>
+<p>The type of the variable may change with any assignment.</p>
+<p>The variables' value is accessed with the variable name:</p>
+<div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the value of d is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-7:-Variables_-"><font color="green"> _Task 7: Variables_ </font><a class="anchor-link" href="#-_Task-7:-Variables_-"> </a></h3><ol>
+<li>Assing the values of 12 [a] and 14 [b] to two variables.</li>
+<li>Assing the ratio (a over b) of this two variables to a new one [c].</li>
+<li>Print the values and types of all three variables.</li>
+<li>Assign the value <code>"overwrite"</code> to variable [c] and print its type.</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Lists">Lists<a class="anchor-link" href="#Lists"> </a></h2><p>Very often, a set of numbers, here a list is needed. In Python they are defined as comma separated values enclosed by <code>[]</code>. The type of the elements does not have to be equal.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="p">[</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+</pre></div>
+<p>Once assigned to a variable, individual elements can be accessed via the accesses operator <code>[]</code>. The index of the target elemet is starting with zero. The access of the third element in a list may look like:</p>
+<div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;old value of third element of L: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="-_Task-8:-Lists_-"><font color="green"> _Task 8: Lists_ </font><a class="anchor-link" href="#-_Task-8:-Lists_-"> </a></h3><ol>
+<li>Create a list with the first 7 primal numbers and assign it to a variable, e.g. <code>first_numbers</code>.</li>
+<li>Print the full list.</li>
+<li>Set the value of the second element to 144 and print the list.</li>
+<li>Use the function <code>sorted</code> to create a new sorted list and print the new one.</li>
+<li>Use the function <code>append</code> of a list to create a new element at the end of the list, e.g. <code>first_numbers.append(5)</code>. Add two elements with the value 99 to the list and print it.</li>
+<li>Create a new list with the function <code>set</code> applied to your extended list. What happened here?</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
